@@ -20,7 +20,7 @@ public class Fraction {
     public int denominator(){
         return n;
     }
-    public double getValue(){
+    public double GetValue(){
         return (double) m/n;
     }
 }
