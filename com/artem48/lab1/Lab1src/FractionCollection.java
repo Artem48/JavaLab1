@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class FractionCollection {
     private ArrayList<Fraction> data;
@@ -12,13 +11,19 @@ public class FractionCollection {
         maxValue = new Fraction(Integer.MAX_VALUE, 1);
         minValue = new Fraction(Integer.MIN_VALUE, 1);
     }
-
-    public Fraction MaxValue() {
-        return maxValue;
+    public FractionCollection(String Filename) throws FileNotFoundException {
+        data = new ArrayList<Fraction>();
+        maxValue = new Fraction(Integer.MIN_VALUE, 1);
+        minValue = new Fraction(Integer.MAX_VALUE, 1);
+        AddFromFile(Filename);
     }
 
-    public Fraction MinValue() {
-        return minValue;
+    public double MaxValue() {
+        return maxValue.GetValue();
+    }
+
+    public double MinValue() {
+        return minValue.GetValue();
     }
 
     public int CountGreaterThan(Fraction x) {
@@ -60,18 +65,19 @@ public class FractionCollection {
         return data.size();
     }
 
-    public void AddFromFile(String Filename) {
-        int[] array = null;
-        try (BufferedReader in = new BufferedReader(new FileReader(Filename))) {
-            array = in.lines().mapToInt(Integer::parseInt).toArray();
-        } catch (IOException | NumberFormatException e) {
-            e.printStackTrace();
+    public void AddFromFile(String Filename) throws FileNotFoundException {
+        ArrayList<Integer> array = new ArrayList<Integer>();
+        Scanner scanner = new Scanner(new File(Filename));
+        while(scanner.hasNextInt()){
+            array.add(scanner.nextInt());
         }
-        if (array != null) {
-            for (int i = 0; i < array.length; i += 2) {
-                if(i+1<array.length)
-                    this.Add(array[i], array[i+1]);
+
+        if (array.size()>0) {
+            for (int i = 0; i < array.size(); i += 2) {
+                if(i+1<array.size())
+                    this.Add(array.get(i), array.get(i+1));
             }
         }
+
     }
 }

@@ -23,4 +23,7 @@ public class Fraction {
     public double GetValue(){
         return (double) m/n;
     }
+    public void setNumerator(int newm){m=newm;}
+    public void setDenominator(int newn){n=newn;}
+
 }
