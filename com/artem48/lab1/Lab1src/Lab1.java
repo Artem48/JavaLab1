@@ -1,6 +1,6 @@
 import java.io.FileNotFoundException;
 
-public class Main {
+public class Lab1 {
 
     public static void main(String[] args) throws FileNotFoundException {
         FractionCollection FrCol = new FractionCollection("com/artem48/fract.txt");

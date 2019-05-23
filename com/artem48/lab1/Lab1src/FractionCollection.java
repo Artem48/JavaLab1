@@ -1,4 +1,5 @@
 import java.io.*;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -67,7 +68,12 @@ public class FractionCollection {
 
     public void AddFromFile(String Filename) throws FileNotFoundException {
         ArrayList<Integer> array = new ArrayList<Integer>();
-        Scanner scanner = new Scanner(new File(Filename));
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File(Filename));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
         while(scanner.hasNextInt()){
             array.add(scanner.nextInt());
         }
