@@ -6,7 +6,7 @@ import Bank.WithdrawException;
 import java.util.Date;
 
 public class DepositAccount extends BaseAccount {
-    private  double percent;
+    private double percent;
     private Date until;
 
     public DepositAccount(Client client, double balance, double percent, Date until) {
@@ -18,9 +18,9 @@ public class DepositAccount extends BaseAccount {
 
     @Override
     public void Withdraw(double value) {
-        if(until.before(new Date()))
+        if (until.before(new Date()))
             throw new WithdrawException("Can't withdraw from deposit account before it expires");
-        if(balance - value < 0)
+        if (balance - value < 0)
             throw new WithdrawException("Not enough money");
         balance -= value;
     }

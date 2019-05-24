@@ -16,7 +16,7 @@ public class CreditAccount extends BaseAccount {
 
     @Override
     public void Withdraw(double value) {
-        if(balance - value < limit)
+        if (balance - value < limit)
             throw new WithdrawException("Not enough money");
         balance -= value;
     }
@@ -28,7 +28,7 @@ public class CreditAccount extends BaseAccount {
 
     @Override
     public void ApplyCommission() {
-        if(balance < 0)
+        if (balance < 0)
             balance -= commission;
     }
 }

@@ -15,7 +15,6 @@ public class Client {
     }
 
 
-
     public Client(String name, String surname, String address, String passport) {
         this.name = name;
         this.surname = surname;

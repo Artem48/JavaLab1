@@ -13,11 +13,12 @@ public class AccountFactory {
         this.commission = commission;
     }
 
+    // createDefaultAccount
     public BaseAccount createAccount(Client client, double balance) {
         if (client.getAddress() == null || client.getPassport() == null)
-            return new UnverifiedAccount(new Account(client, balance, percent));
+            return new UnverifiedAccount(new DefaultAccount(client, balance, percent));
         else
-            return new Account(client, balance, percent);
+            return new DefaultAccount(client, balance, percent);
     }
 
     public BaseAccount createAccount(Client client, double balance, Date until) {

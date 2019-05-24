@@ -30,7 +30,7 @@ public class ClientBuilder {
 
     Client Build() {
         if (name == null || surname == null)
-            throw new InsuffcicientDataException();
+            throw new InsuffcicientDataException("Mandatory fields was not filled");
         return new Client(name, surname, address, passport);
     }
 }

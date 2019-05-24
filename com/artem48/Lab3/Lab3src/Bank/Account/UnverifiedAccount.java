@@ -4,7 +4,7 @@ import Bank.TransferException;
 import Bank.WithdrawException;
 
 public class UnverifiedAccount extends BaseAccount {
-    private BaseAccount baseAccount;
+    private BaseAccount baseAccount;  // delegate
     private static final double unverifiedLimit = 500;
 
     UnverifiedAccount(BaseAccount baseAccount) {

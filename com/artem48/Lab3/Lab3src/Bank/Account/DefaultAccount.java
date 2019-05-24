@@ -3,10 +3,10 @@ package Bank.Account;
 import Bank.Client.Client;
 import Bank.WithdrawException;
 
-public class Account extends BaseAccount {
+public class DefaultAccount extends BaseAccount {
     private double percent;
 
-    public Account(Client client, double balance, double percent) {
+    public DefaultAccount(Client client, double balance, double percent) {
         this.client = client;
         this.balance = balance;
         this.percent = percent;
@@ -14,7 +14,7 @@ public class Account extends BaseAccount {
 
     @Override
     public void Withdraw(double value) {
-        if(balance - value < 0)
+        if (balance - value < 0)
             throw new WithdrawException("Not enough money");
         balance -= value;
     }

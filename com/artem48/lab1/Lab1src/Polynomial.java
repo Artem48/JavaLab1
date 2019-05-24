@@ -1,58 +1,56 @@
 import java.util.ArrayList;
 
 public class Polynomial {
-    private ArrayList<Fraction> data;
+    private final FractionCollection coeffs;
 
+    // primary ctor
     public Polynomial(FractionCollection Collection) {
-        data = new ArrayList<Fraction>();
-        for (int i = 0; i < Collection.size(); i++) {
-            data.add(Collection.get(i));
-        }
+        this.coeffs = Collection;
     }
 
     public int size() {
-        return data.size();
+        return coeffs.size();
     }
 
     public Fraction get(int pos) {
-        return data.get(pos);
+        return coeffs.get(pos);
     }
 
-    public void sum(Polynomial y) {
+    public static Polynomial sum(Polynomial x, Polynomial y) {
         Polynomial ans;
         int i, j;
-        if (this.size() > y.size()) {
-            ans = this;
-            j = y.data.size() - 1;
+        if (x.size() > y.size()) {
+            ans = x;
+            j = y.coeffs.size() - 1;
         } else {
             ans = y;
-            j = this.data.size() - 1;
+            j = x.coeffs.size() - 1;
         }
 
-        i = ans.data.size() - 1;
+        i = ans.coeffs.size() - 1;
         while (true) {
             if (i < 0 || j < 0) break;
-            int numeratorx,numeratory,denominatorx,denominatory;
-            if (this.size() > y.size()) {
-                numeratorx = this.data.get(i).numerator();
-                numeratory = y.data.get(j).numerator();
-                denominatorx = this.data.get(i).denominator();
-                denominatory = y.data.get(j).denominator();
+            int numeratorx, numeratory, denominatorx, denominatory;
+            if (x.size() > y.size()) {
+                numeratorx = x.coeffs.get(i).numerator();
+                numeratory = y.coeffs.get(j).numerator();
+                denominatorx = x.coeffs.get(i).denominator();
+                denominatory = y.coeffs.get(j).denominator();
             } else {
-                numeratorx = this.data.get(j).numerator();
-                numeratory = y.data.get(i).numerator();
-                denominatorx = this.data.get(j).denominator();
-                denominatory = y.data.get(i).denominator();
+                numeratorx = x.coeffs.get(j).numerator();
+                numeratory = y.coeffs.get(i).numerator();
+                denominatorx = x.coeffs.get(j).denominator();
+                denominatory = y.coeffs.get(i).denominator();
             }
 
             int newdenominator = denominatorx * denominatory;
             int newnumerator = numeratorx * denominatory + numeratory * denominatorx;
 
-            ans.data.get(i).setNumerator(newnumerator);
-            ans.data.get(i).setDenominator(newdenominator);
+            ans.coeffs.get(i).setNumerator(newnumerator);
+            ans.coeffs.get(i).setDenominator(newdenominator);
             i--;
             j--;
         }
-        this.data=ans.data;
+        return ans;
     }
 }
