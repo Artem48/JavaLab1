@@ -29,6 +29,6 @@ public class CreditAccount extends BaseAccount {
     @Override
     public void ApplyCommission() {
         if (balance < 0)
-            balance -= commission;
+            balance -= balance*(100-commission)/100;
     }
 }

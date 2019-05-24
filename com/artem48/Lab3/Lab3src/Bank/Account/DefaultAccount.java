@@ -21,7 +21,7 @@ public class DefaultAccount extends BaseAccount {
 
     @Override
     public void ApplyPercent() {
-        balance += balance * percent;
+        balance += balance * (100+percent)/100.0;
     }
 
     @Override

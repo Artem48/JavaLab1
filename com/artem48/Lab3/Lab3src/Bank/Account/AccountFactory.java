@@ -13,22 +13,22 @@ public class AccountFactory {
         this.commission = commission;
     }
 
-    // createDefaultAccount
-    public BaseAccount createAccount(Client client, double balance) {
+
+    public BaseAccount createDefaultAccount(Client client, double balance) {
         if (client.getAddress() == null || client.getPassport() == null)
             return new UnverifiedAccount(new DefaultAccount(client, balance, percent));
         else
             return new DefaultAccount(client, balance, percent);
     }
 
-    public BaseAccount createAccount(Client client, double balance, Date until) {
+    public BaseAccount createDepositAccount(Client client, double balance, Date until) {
         if (client.getAddress() == null || client.getPassport() == null)
             return new UnverifiedAccount(new DepositAccount(client, balance, percent, until));
         else
             return new DepositAccount(client, balance, percent, until);
     }
 
-    public BaseAccount createAccount(Client client, double balance, double limit) {
+    public BaseAccount createCreditAccount(Client client, double balance, double limit) {
         if (client.getAddress() == null || client.getPassport() == null)
             return new UnverifiedAccount(new CreditAccount(client, balance, limit, commission));
         else

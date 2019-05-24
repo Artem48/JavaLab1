@@ -8,27 +8,27 @@ public class ClientBuilder {
     private String address;
     private String passport;
 
-    ClientBuilder setName(String name) {
+    public ClientBuilder setName(String name) {
         this.name = name;
         return this;
     }
 
-    ClientBuilder setSurname(String surname) {
+    public ClientBuilder setSurname(String surname) {
         this.surname = surname;
         return this;
     }
 
-    ClientBuilder setAddress(String address) {
+    public ClientBuilder setAddress(String address) {
         this.address = address;
         return this;
     }
 
-    ClientBuilder setPassport(String passport) {
+    public ClientBuilder setPassport(String passport) {
         this.passport = passport;
         return this;
     }
 
-    Client Build() {
+    public Client Build() {
         if (name == null || surname == null)
             throw new InsuffcicientDataException("Mandatory fields was not filled");
         return new Client(name, surname, address, passport);

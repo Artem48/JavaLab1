@@ -7,10 +7,17 @@ public abstract class BaseAccount {
     protected Client client;
     protected double balance;
 
-    void TransferMoney(BaseAccount other, double value) {
+    public void TransferMoney(BaseAccount other, double value) {
         if (!other.client.equals(client))
             throw new TransferException("Transferring is permitted only between same client's accounts");
+        else {
+            this.Withdraw(value);
+            other.Deposit(value);
+        }
+    }
 
+    public double getBalance() {
+        return balance;
     }
 
     public void Deposit(double value) {
